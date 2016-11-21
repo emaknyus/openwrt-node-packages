@@ -10,7 +10,7 @@ include $(TOPDIR)/rules.mk
 PKG_NPM_NAME:=serialport
 PKG_NAME:=node-$(PKG_NPM_NAME)
 PKG_VERSION:=3.1.2
-PKG_RELEASE:=9
+PKG_RELEASE:=10
 
 PKG_SOURCE:=$(PKG_NPM_NAME)-$(PKG_VERSION).tgz
 PKG_SOURCE_URL:=http://registry.npmjs.org/$(PKG_NPM_NAME)/-/
@@ -59,6 +59,9 @@ endef
 define Package/node-serialport/install
 	mkdir -p $(1)/usr/lib/node
 	$(CP) $(PKG_INSTALL_DIR)/usr/lib/node_modules/* $(1)/usr/lib/node/
+	mkdir -p $(1)/usr/bin
+	$(LN) ../lib/node_modules/serialport/bin/serialport-list.js $(1)/usr/bin/serialport-list
+	$(LN) ../lib/node_modules/serialport/bin/serialport-terminal.js $(1)/usr/bin/serialport-term
 endef
 
 $(eval $(call BuildPackage,node-serialport))

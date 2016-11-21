@@ -10,7 +10,7 @@ include $(TOPDIR)/rules.mk
 PKG_NPM_NAME:=logfmt
 PKG_NAME:=node-$(PKG_NPM_NAME)
 PKG_VERSION:=1.2.0
-PKG_RELEASE:=6
+PKG_RELEASE:=7
 
 PKG_SOURCE:=$(PKG_NPM_NAME)-$(PKG_VERSION).tgz
 PKG_SOURCE_URL:=http://registry.npmjs.org/$(PKG_NPM_NAME)/-/
@@ -60,6 +60,8 @@ endef
 define Package/node-logfmt/install
 	mkdir -p $(1)/usr/lib/node
 	$(CP) $(PKG_INSTALL_DIR)/usr/lib/node_modules/* $(1)/usr/lib/node/
+	mkdir -p $(1)/usr/bin
+	$(LN) ../lib/node_modules/logfmt/bin/logfmt $(1)/usr/bin/logfmt
 endef
 
 $(eval $(call BuildPackage,node-logfmt))

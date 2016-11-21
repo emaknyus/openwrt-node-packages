@@ -10,7 +10,7 @@ include $(TOPDIR)/rules.mk
 PKG_NPM_NAME:=node-static
 PKG_NAME:=node-$(PKG_NPM_NAME)
 PKG_VERSION:=0.7.7
-PKG_RELEASE:=6
+PKG_RELEASE:=7
 
 PKG_SOURCE:=$(PKG_NPM_NAME)-$(PKG_VERSION).tgz
 PKG_SOURCE_URL:=http://registry.npmjs.org/$(PKG_NPM_NAME)/-/
@@ -59,6 +59,8 @@ endef
 define Package/node-node-static/install
 	mkdir -p $(1)/usr/lib/node
 	$(CP) $(PKG_INSTALL_DIR)/usr/lib/node_modules/* $(1)/usr/lib/node/
+	mkdir -p $(1)/usr/bin
+	$(LN) ../lib/node_modules/node-static/bin/cli.js $(1)/usr/bin/static
 endef
 
 $(eval $(call BuildPackage,node-node-static))

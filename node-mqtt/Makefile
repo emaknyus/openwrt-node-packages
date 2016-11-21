@@ -10,7 +10,7 @@ include $(TOPDIR)/rules.mk
 PKG_NPM_NAME:=mqtt
 PKG_NAME:=node-$(PKG_NPM_NAME)
 PKG_VERSION:=2.0.1
-PKG_RELEASE:=3
+PKG_RELEASE:=4
 
 PKG_SOURCE:=$(PKG_NPM_NAME)-$(PKG_VERSION).tgz
 PKG_SOURCE_URL:=http://registry.npmjs.org/$(PKG_NPM_NAME)/-/
@@ -62,6 +62,10 @@ endef
 define Package/node-mqtt/install
 	mkdir -p $(1)/usr/lib/node
 	$(CP) $(PKG_INSTALL_DIR)/usr/lib/node_modules/* $(1)/usr/lib/node/
+	mkdir -p $(1)/usr/bin
+	$(LN) ../lib/node_modules/mqtt/mqtt.js $(1)/usr/bin/mqtt
+	$(LN) ../lib/node_modules/mqtt/pub.js $(1)/usr/bin/mqtt_pub
+	$(LN) ../lib/node_modules/mqtt/sub.js $(1)/usr/bin/mqtt_sub
 endef
 
 $(eval $(call BuildPackage,node-mqtt))

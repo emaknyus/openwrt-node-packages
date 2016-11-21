@@ -10,7 +10,7 @@ include $(TOPDIR)/rules.mk
 PKG_NPM_NAME:=node-lambda
 PKG_NAME:=node-$(PKG_NPM_NAME)
 PKG_VERSION:=0.8.11
-PKG_RELEASE:=1
+PKG_RELEASE:=2
 
 PKG_SOURCE:=$(PKG_NPM_NAME)-$(PKG_VERSION).tgz
 PKG_SOURCE_URL:=http://registry.npmjs.org/$(PKG_NPM_NAME)/-/
@@ -59,6 +59,8 @@ endef
 define Package/node-node-lambda/install
 	mkdir -p $(1)/usr/lib/node
 	$(CP) $(PKG_INSTALL_DIR)/usr/lib/node_modules/* $(1)/usr/lib/node/
+	mkdir -p $(1)/usr/bin
+	$(LN) ../lib/node_modules/node-lambda/bin/node-lambda $(1)/usr/bin/node-lambda
 endef
 
 $(eval $(call BuildPackage,node-node-lambda))

@@ -10,7 +10,7 @@ include $(TOPDIR)/rules.mk
 PKG_NPM_NAME:=firmata
 PKG_NAME:=node-$(PKG_NPM_NAME)
 PKG_VERSION:=0.14.1
-PKG_RELEASE:=5
+PKG_RELEASE:=6
 
 PKG_SOURCE:=$(PKG_NPM_NAME)-$(PKG_VERSION).tgz
 PKG_SOURCE_URL:=http://registry.npmjs.org/$(PKG_NPM_NAME)/-/
@@ -59,6 +59,8 @@ endef
 define Package/node-firmata/install
 	mkdir -p $(1)/usr/lib/node
 	$(CP) $(PKG_INSTALL_DIR)/usr/lib/node_modules/* $(1)/usr/lib/node/
+	mkdir -p $(1)/usr/bin
+	$(LN) ../lib/node_modules/firmata/repl.js $(1)/usr/bin/firmata
 endef
 
 $(eval $(call BuildPackage,node-firmata))
