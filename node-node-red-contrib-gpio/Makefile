@@ -36,7 +36,7 @@ define Package/node-node-node-red-contrib-gpio
 endef
 
 define Package/node-node-node-red-contrib-gpio/description
- set of input and output nodes for controlling General Purpose Input and Outputs (GPIOs) though the use of johnny-five I/O Plugins as well as running johnny-five scripts!
+ A set of input and output nodes for controlling General Purpose Input and Outputs (GPIOs) though the use of johnny-five I/O Plugins as well as running johnny-five scripts!
 endef
 
 define Build/Prepare
