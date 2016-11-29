@@ -7,7 +7,7 @@
 
 include $(TOPDIR)/rules.mk
 
-PKG_NPM_NAME:=node-node-red-contrib-gpio
+PKG_NPM_NAME:=node-red-contrib-gpio
 PKG_NAME:=node-$(PKG_NPM_NAME)
 PKG_VERSION:=0.9.0
 PKG_RELEASE:=1
@@ -26,7 +26,7 @@ PKG_LICENSE_FILES:=License.md
 
 include $(INCLUDE_DIR)/package.mk
 
-define Package/node-node-node-red-contrib-gpio
+define Package/node-node-red-contrib-gpio
   DEPENDS:=+node
   SUBMENU:=Node.js
   SECTION:=lang
@@ -35,7 +35,7 @@ define Package/node-node-node-red-contrib-gpio
   URL:=http://nodered.org/
 endef
 
-define Package/node-node-node-red-contrib-gpio/description
+define Package/node-node-red-contrib-gpio/description
  A set of input and output nodes for controlling General Purpose Input and Outputs (GPIOs) though the use of johnny-five I/O Plugins as well as running johnny-five scripts!
 endef
 
@@ -56,10 +56,10 @@ define Build/Compile
 	npm install --build-from-source --target_arch=$(CPU) -g $(PKG_BUILD_DIR)
 endef
 
-define Package/node-node-node-red-contrib-gpio/install
+define Package/node-node-red-contrib-gpio/install
 	mkdir -p $(1)/usr/lib/node
 	$(CP) $(PKG_INSTALL_DIR)/usr/lib/node_modules/* $(1)/usr/lib/node/
 endef
 
-$(eval $(call BuildPackage,node-node-node-red-contrib-gpio))
+$(eval $(call BuildPackage,node-node-red-contrib-gpio))
 
